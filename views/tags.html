@@ -1,0 +1,9 @@
+<div id="tag-clouds">
+    <h2>Tags</h2>
+    <hr>
+    <ul>
+        <% tags.forEach(function(tag) { %>
+        <li><a href="/tag/<%= encodeURI(tag._id) %>"><%= tag._id %>(<%= tag.value %>)</a></li>
+        <% }) %>
+    </ul>
+</div>

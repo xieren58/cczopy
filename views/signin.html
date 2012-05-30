@@ -1,0 +1,18 @@
+
+<form id="signin-form" action="/signin" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrf %>"> 
+<fieldset>
+    <legend>登录</legend>
+    <% if (locals.error) { %>
+        <div class="form-error"> 
+            <%= error %>
+        </div>
+    <% } %>
+    <label for="name">用户名：</label>
+    <input type="text" name="name">
+    <label for="pass">密码：</label>
+    <input type="password" name="pass">
+
+    <input type="submit" value="提交">
+</fieldset>
+</form>

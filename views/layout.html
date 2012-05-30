@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title><%= locals.title || 'CCZOPY' %></title>
+  <meta name="description" content="cz.chen's blog">
+  <meta name="author" content="cz.chen">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- CSS
+  ================================================== -->
+  <link rel="stylesheet" href="/stylesheets/base.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton.css">
+  <link rel="stylesheet" href="/stylesheets/layout.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="/javascripts/jquery-1.7.2.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Favicons
+  ================================================== -->
+  <link rel="shortcut icon" href="/images/favicon.ico">
+<!--   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"> -->
+
+</head>
+<body>
+
+
+
+  <!-- Primary Page Layout
+  ================================================== -->
+
+  <div class="container">
+    <header id="header">
+      <div class="four columns alpha">
+        <h1>CCZ.OPY</h1>
+      </div>
+      <nav class="ten columns omega">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tags">Tags</a></li>
+          <li><a href="/about">About</a></li>
+          <% if (current_user) { %>
+          <li><a href="/topic/create">发表文章</a></li>
+          <li><a href="/reset">重设资料</a></li>
+          <li><a href="/signout">退出</a></li>
+          <% } %>
+        </ul>
+      </nav>
+  </header>
+
+    <div id="main" class="sixteen columns">
+      <%- body %>
+    </div>
+
+
+    <footer class="sixteen columns">
+      <p class="remove-bottom">
+        <small>
+          <% if(new Date().getFullYear() === 2012){ %>
+          ©2012
+          <% } else{ %>
+          ©2012-<%= new Date().getFullYear() %>
+          <% } %>
+          &nbsp;CCZOPY
+          &nbsp;&nbsp;
+          <a href="http://www.nodejs.org" target="_blank">NodeJS</a>
+          +
+          <a href="http://www.mongodb.org" target="_blank">MongoDB</a>
+        </small>
+      <p>
+    </footer>
+
+  </div><!-- container -->
+
+  <!-- JS
+  ================================================== -->
+<script src="/javascripts/main.js"></script>
+
+<!-- End Document
+================================================== -->
+<a style="display:none;" rel="nofollow" href="#header" id="back-to-top">▲</a>
+</body>
+</html>

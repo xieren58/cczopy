@@ -1,0 +1,26 @@
+<% if (locals.success) { %>
+<%= success %>
+<% } else { %>
+<form id="topic-form" action="/topic/create" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrf %>"> 
+<fieldset>
+    <legend>发表文章</legend>
+    <% if (locals.error) { %>
+        <div class="form-error"> 
+            <%= error %>
+        </div>
+    <% } %>
+    <label for="title">标题：</label>
+    <input type="text" name="title" value="<%= locals.title || '' %>">
+    <label for="tags">标签：(多个用,隔开)</label>
+    <input type="text" name="tags" value="<%= locals.tags || '' %>">
+    <label for="content">内容：</label>
+    <textarea name="content"><%= locals.content || '' %></textarea>
+
+    <input type="submit" value="提交">
+</fieldset>
+</form>
+
+<%- partial('partial/autocomplete') %>
+
+<% } %>

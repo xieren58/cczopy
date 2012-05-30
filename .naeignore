@@ -1,0 +1,6 @@
+manifest.yml
+public/images/Thumbs.db
+node_modules/ejs/.*
+node_modules/express/.*
+node_modules/mongoose/.*
+node_modules/connect-mongo/node_modules/.*

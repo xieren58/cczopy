@@ -1,0 +1,86 @@
+<% if (locals.topic) { %>
+<article>
+    <header>
+        <h2><%= topic.title %></h2>
+        <time><%= topic.readableCreated %></time>
+        <small class="tags">
+            <% topic.tags.forEach(function(tag) { %>
+            <a href="/tag/<%= encodeURI(tag) %>"><%= tag %></a>
+            <% }) %>
+        </small>
+        &nbsp;&nbsp;
+        <time>Updated: <%= topic.readableUpdated %></time>
+        <% if (current_user) { %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/topic/<%= topic._id %>/edit">编辑</a>
+          &nbsp;
+          <a href="/topic/<%= topic._id %>/delete">删除</a>
+        <% } %>
+    </header>
+    <div class="content">
+        <%- topic.markedContent %>
+    </div>
+</article>
+
+<div class="topic-page">
+    <% if (locals.prevTopic) { %>
+    <a title="<%= prevTopic.title %>  ←" href="/topic/<%= prevTopic._id %>" class="prev-topic"></a>
+    <% } %>
+    <% if (locals.nextTopic) { %>
+    <a title="→  <%= nextTopic.title %>" href="/topic/<%= nextTopic._id %>" class="next-topic"></a>
+    <% } %>
+</div>
+
+<div id="comments">
+    <h3>Comments(<%= topic.comment_count %>)...</h3>
+    <ul>
+        <% comments.forEach(function(comment) { %>
+        <li>
+            <h4><img src="<%= comment.gravatar %>" class="avatar">
+                <% if(comment.website) { %>
+                <a href="<%= comment.website %>" target="_blank" class="author"><%= comment.author %></a>
+                <% } else { %>
+                <span class="author"><%= comment.author %></span>
+                <% } %>
+                <time><%= comment.readableCreated %></time>
+                <% if (current_user) { %>
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="/comment/<%= comment._id %>/delete">删除</a>
+                <% } %>
+            </h4>
+            <div class="comment-content"><%- comment.marked_content %></div>
+        </li>
+        <% }) %>
+    </ul>
+
+    <div id="new-comment">
+        <h3>New Comment</h3>
+        <form action="/comment/create" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrf %>"> 
+            <input type="hidden" name="topic_id" value="<%= topic._id %>"> 
+
+            <% if(flash.error) { %>
+            <div class="form-error"> 
+                <%= flash.error %>
+            </div>
+            <% } %>
+
+            <label for="author">Nickname (Required): </label>
+            <input type="text" name="nickname" value="<%= flash.nickname || '' %>">
+            <label for="email">Email (Required, just for gravatar): </label>
+            <input type="text" name="email" value="<%= flash.email || '' %>">
+            <label for="website">Website (Optional): </label>
+            <input type="text" name="website" value="<%= flash.website || '' %>" placeholder="http://">
+            <label for="content">Comment(Required): </label>
+            <a class="gfm" target="_blank" href="http://github.github.com/github-flavored-markdown/">
+                Please use "GitHub Flavored Markdown" (GFM).
+            </a>
+            <textarea name="content"><%= flash.content || '' %></textarea>
+            
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+<%- partial('partial/highlight') %>
+<% } %>

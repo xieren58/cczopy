@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="/stylesheets/jquery.autocomplete.css">
+<script src="/javascripts/jquery.autocomplete.min.js"></script>
+<script>
+$("input[name='tags']").autocomplete("/ajaxTags", {
+    matchCase: false,
+    multiple: true, 
+    multipleSeparator: ','
+});
+
+</script>

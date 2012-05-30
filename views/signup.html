@@ -1,0 +1,25 @@
+<% if (locals.success) { %>
+<%= success %>
+<% } else { %>
+<form id="#signup-form" action="/signup" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrf %>"> 
+<fieldset>
+    <legend><h4>注册</h4></legend>
+    <% if (locals.error) { %>
+        <div class="form-error"> 
+            <%= error %>
+        </div>
+    <% } %>
+    <label for="name">用户名：</label>
+    <input type="text" name="name" value="<%= locals.name || '' %>">
+    <label for="pass">密码：</label>
+    <input type="password" name="pass">
+    <label for="name">确认密码：</label>
+    <input type="password" name="confirm_pass">
+    <label for="email">Email：</label>
+    <input type="text" name="email" value="<%= locals.email || '' %>">
+
+    <input type="submit" value="提交">
+</fieldset>
+</form>
+<% } %>

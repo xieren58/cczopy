@@ -1,0 +1,21 @@
+<% topics.forEach(function(topic) { %>
+<article>
+    <header>
+        <h2><a href="/topic/<%= topic._id %>"><%= topic.title %></a></h2>
+        <time><%= topic.readableCreated %></time>
+        <small class="tags">
+            <% topic.tags.forEach(function(tag) { %>
+            <a href="/tag/<%= encodeURI(tag) %>"><%= tag %></a>
+            <% }) %>
+        </small>
+        <small class="comment-count"><a href="/topic/<%= topic._id %>#comments"><%= topic.comment_count %> comments</a></small>
+    </header>
+    <div class="content">
+        <%- topic.markedContent %>
+    </div>
+</article>
+<% }) %>
+
+<%- partial('partial/pagination') %>
+
+<%- partial('partial/highlight') %>

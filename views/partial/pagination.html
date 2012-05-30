@@ -1,0 +1,17 @@
+<div class="pagination">
+
+    <% if (locals.prevPage) { %>
+        <a href="<%= baseurl %>?page=<%= (currentPage - 1) %>">« Previous</a>
+    <% } else {%>
+        <span>« Previous</span>
+    <% } %>
+     — 
+    <strong><%= currentPage %></strong>
+     — 
+    <% if (locals.nextPage) { %>
+        <a href="<%= baseurl %>?page=<%= (currentPage + 1) %>">Next »</a>
+    <% } else {%>
+        <span>Next »</span>
+    <% } %>
+
+</div>
